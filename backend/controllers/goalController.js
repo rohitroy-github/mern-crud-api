@@ -2,7 +2,7 @@
 const asyncHandler = require("express-async-handler");
 
 // importingModels
-const Goal = require("../models/goalModels");
+const Goal = require("../models/goalModel");
 
 // functionToGetGoals
 const getGoals = asyncHandler(async (req, res) => {
