@@ -18,6 +18,7 @@ router.post("/", registerUser);
 router.post("/login", loginUser);
 
 // getRequest
+// passingMiddleWare
 router.get("/me", protect, getMe);
 
 module.exports = router;
