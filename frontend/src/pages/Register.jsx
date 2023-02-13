@@ -73,11 +73,11 @@ const Register = () => {
   return (
     <>
       <section className="heading">
-        <h1>
+        <h4>
           <FaUser />
           Register
-        </h1>
-        <p>Please create an account !</p>
+        </h4>
+        <p>Let's create a new account !</p>
       </section>
       <section className="form">
         <form onSubmit={onSubmit}>
@@ -131,7 +131,7 @@ const Register = () => {
 
           <div className="form-group">
             <button type="submit" className="btn btn-block">
-              Submit
+              Register
             </button>
           </div>
         </form>

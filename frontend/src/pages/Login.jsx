@@ -65,10 +65,10 @@ const Login = () => {
   return (
     <>
       <section className="heading">
-        <h1>
+        <h4>
           <FaSignInAlt />
           Login
-        </h1>
+        </h4>
         <p>Login to continue !</p>
       </section>
       <section className="form">
