@@ -6,6 +6,9 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // importingComponents
 import Header from "./components/Header.jsx";
 
@@ -22,6 +25,7 @@ const App = () => {
           </Routes>
         </div>
       </Router>
+      <ToastContainer />
     </>
   );
 };
