@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 // importingComponents
-import GoalForm from "./GoalForm";
+import GoalForm from "../components/GoalForm";
 
 const Dashboard = () => {
   const navigate = useNavigate();

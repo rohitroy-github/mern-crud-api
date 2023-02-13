@@ -12,6 +12,8 @@ const GoalForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    console.log(newGoal);
+
     dispatch(createGoal({newGoal}));
 
     setNewGoal("");
