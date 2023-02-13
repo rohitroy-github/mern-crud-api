@@ -1,10 +1,10 @@
 import {useState} from "react";
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch} from "react-redux";
 
 import {createGoal} from "../features/goals/goalSlice";
 
 const GoalForm = () => {
-  const [newGoal, setNewGoal] = useState("");
+  const [text, setText] = useState("");
 
   const dispatch = useDispatch();
 
@@ -12,11 +12,11 @@ const GoalForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    console.log(newGoal);
+    // console.log(newGoal);
 
-    dispatch(createGoal({newGoal}));
+    dispatch(createGoal({text}));
 
-    setNewGoal("");
+    setText("");
   };
 
   return (
@@ -28,11 +28,11 @@ const GoalForm = () => {
             <input
               type="text"
               className="form-control"
-              id="goal"
-              name="goal"
-              value={newGoal}
+              id="text"
+              name="text"
+              value={text}
               placeholder="Enter your goal ?"
-              onChange={(e) => setNewGoal(e.target.value)}
+              onChange={(e) => setText(e.target.value)}
             />
           </div>
 
