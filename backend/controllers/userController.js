@@ -76,13 +76,13 @@ const loginUser = asyncHandler(async (req, res) => {
 // functionForFetchingUserDetails
 const getMe = asyncHandler(async (req, res) => {
   // here [req.user] = userLogginInCurrently
-  const {_id, name, email} = await User.findById(req.user.id);
-
-  res.status(200).json({
-    id: _id,
-    name,
-    email,
-  });
+  // const {_id, name, email} = await User.findById(req.user.id);
+  // res.status(200).json({
+  //   id: _id,
+  //   name,
+  //   email,
+  // });
+  res.status(200).json(req.body);
 });
 
 // functionToGenerateToken
