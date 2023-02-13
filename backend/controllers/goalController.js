@@ -1,10 +1,14 @@
+// controllerForGoalFunctions
+
 // asyncHandlerForMongooseHandling
 const asyncHandler = require("express-async-handler");
 
 // importingModels
 const Goal = require("../models/goalModel");
 const User = require("../models/userModel");
-const {use} = require("../routes/goalRoutes");
+
+// importingRoutes
+// const {use} = require("../routes/goalRoutes");
 
 // functionToGetGoals
 const getGoals = asyncHandler(async (req, res) => {
