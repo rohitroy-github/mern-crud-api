@@ -1,20 +1,12 @@
-// RegisterNewUserPageFomrComponent
-
-import React from "react";
 import {useState, useEffect} from "react";
-import {FaUser} from "react-icons/fa";
-
-// forUsingReduxFunctions
 import {useSelector, useDispatch} from "react-redux";
-import {register, reset} from "../features/auth/authSlice";
-// forRedirecting
-import {useAsyncError, useNavigate} from "react-router-dom";
-// forMakingToasts
+import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
-
+import {FaUser} from "react-icons/fa";
+import {register, reset} from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
 
-const Register = () => {
+function Register() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -53,8 +45,8 @@ const Register = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (password != password2) {
-      toast.error("Password do not match, Please try again !");
+    if (password !== password2) {
+      toast.error("Passwords do not match");
     } else {
       const userData = {
         name,
@@ -73,12 +65,12 @@ const Register = () => {
   return (
     <>
       <section className="heading">
-        <h4>
-          <FaUser />
-          Register
-        </h4>
-        <p>Let's create a new account !</p>
+        <h1>
+          <FaUser /> Register
+        </h1>
+        <p>Please create an account</p>
       </section>
+
       <section className="form">
         <form onSubmit={onSubmit}>
           <div className="form-group">
@@ -88,11 +80,10 @@ const Register = () => {
               id="name"
               name="name"
               value={name}
-              placeholder="Enter your name ?"
+              placeholder="Enter your name"
               onChange={onChange}
             />
           </div>
-
           <div className="form-group">
             <input
               type="email"
@@ -100,11 +91,10 @@ const Register = () => {
               id="email"
               name="email"
               value={email}
-              placeholder="Enter your email ?"
+              placeholder="Enter your email"
               onChange={onChange}
             />
           </div>
-
           <div className="form-group">
             <input
               type="password"
@@ -112,11 +102,10 @@ const Register = () => {
               id="password"
               name="password"
               value={password}
-              placeholder="Enter a password ?"
+              placeholder="Enter password"
               onChange={onChange}
             />
           </div>
-
           <div className="form-group">
             <input
               type="password"
@@ -124,20 +113,19 @@ const Register = () => {
               id="password2"
               name="password2"
               value={password2}
-              placeholder="Confirm your password ?"
+              placeholder="Confirm password"
               onChange={onChange}
             />
           </div>
-
           <div className="form-group">
             <button type="submit" className="btn btn-block">
-              Register
+              Submit
             </button>
           </div>
         </form>
       </section>
     </>
   );
-};
+}
 
 export default Register;

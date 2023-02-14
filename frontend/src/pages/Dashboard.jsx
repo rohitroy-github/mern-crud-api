@@ -1,28 +1,21 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-
-import Spinner from "../components/Spinner";
-import GoalItem from "../components/GoalItem";
-
-import {toast} from "react-toastify";
-
-// importingComponents
 import GoalForm from "../components/GoalForm";
+import GoalItem from "../components/GoalItem";
+import Spinner from "../components/Spinner";
 import {getGoals, reset} from "../features/goals/goalSlice";
 
-const Dashboard = () => {
+function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const {user} = useSelector((state) => state.auth);
-
   const {goals, isLoading, isError, message} = useSelector(
     (state) => state.goals
   );
+
   useEffect(() => {
-    // redirectToLoginPageIfUserNotSignedIn
-    // ifUserTriesToGoToDashboard/HomePage
     if (isError) {
       console.log(message);
     }
@@ -45,8 +38,8 @@ const Dashboard = () => {
   return (
     <>
       <section className="heading">
-        <h4>Welcome {user && user.name}</h4>
-        <h5>Goals Dashboard</h5>
+        <h1>Welcome {user && user.name}</h1>
+        <p>Goals Dashboard</p>
       </section>
 
       <GoalForm />
@@ -59,11 +52,11 @@ const Dashboard = () => {
             ))}
           </div>
         ) : (
-          <h3>You have not created any goals yet ! </h3>
+          <h3>You have not set any goals</h3>
         )}
       </section>
     </>
   );
-};
+}
 
 export default Dashboard;

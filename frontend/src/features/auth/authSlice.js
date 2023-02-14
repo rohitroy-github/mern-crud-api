@@ -1,11 +1,9 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-
 import authService from "./authService";
 
-// getUserFormLocalStorage
+// Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"));
 
-// defininginitialState
 const initialState = {
   user: user ? user : null,
   isError: false,
@@ -14,7 +12,7 @@ const initialState = {
   message: "",
 };
 
-// registerUserFunction
+// Register user
 export const register = createAsyncThunk(
   "auth/register",
   async (user, thunkAPI) => {
@@ -26,14 +24,13 @@ export const register = createAsyncThunk(
           error.response.data &&
           error.response.data.message) ||
         error.message ||
-        error.toStringify();
-
+        error.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }
 );
 
-// loginUserFunction
+// Login user
 export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
     return await authService.login(user);
@@ -41,13 +38,11 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||
-      error.toStringify();
-
+      error.toString();
     return thunkAPI.rejectWithValue(message);
   }
 });
 
-// logoutUserFunction
 export const logout = createAsyncThunk("auth/logout", async () => {
   await authService.logout();
 });
@@ -58,8 +53,8 @@ export const authSlice = createSlice({
   reducers: {
     reset: (state) => {
       state.isLoading = false;
-      state.isError = false;
       state.isSuccess = false;
+      state.isError = false;
       state.message = "";
     },
   },
@@ -79,7 +74,6 @@ export const authSlice = createSlice({
         state.message = action.payload;
         state.user = null;
       })
-
       .addCase(login.pending, (state) => {
         state.isLoading = true;
       })
@@ -94,7 +88,6 @@ export const authSlice = createSlice({
         state.message = action.payload;
         state.user = null;
       })
-
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
       });
@@ -102,5 +95,4 @@ export const authSlice = createSlice({
 });
 
 export const {reset} = authSlice.actions;
-
 export default authSlice.reducer;

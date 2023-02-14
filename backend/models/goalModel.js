@@ -9,7 +9,7 @@ const goalSchema = mongoose.Schema(
     },
     text: {
       type: String,
-      required: [true, "Please add a text value !"],
+      required: [true, "Please add a text value"],
     },
   },
   {
@@ -17,5 +17,4 @@ const goalSchema = mongoose.Schema(
   }
 );
 
-// exportingCreatedModel
 module.exports = mongoose.model("Goal", goalSchema);

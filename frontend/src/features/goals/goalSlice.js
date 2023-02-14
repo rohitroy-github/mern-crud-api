@@ -1,8 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-
 import goalService from "./goalService";
 
-// defininginitialState
 const initialState = {
   goals: [],
   isError: false,
@@ -11,16 +9,12 @@ const initialState = {
   message: "",
 };
 
+// Create new goal
 export const createGoal = createAsyncThunk(
   "goals/create",
   async (goalData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-
-      // check
-      console.log(token);
-      console.log(goalData);
-
       return await goalService.createGoal(goalData, token);
     } catch (error) {
       const message =
@@ -28,23 +22,18 @@ export const createGoal = createAsyncThunk(
           error.response.data &&
           error.response.data.message) ||
         error.message ||
-        error.toStringify();
-
+        error.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }
 );
 
+// Get user goals
 export const getGoals = createAsyncThunk(
   "goals/getAll",
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-
-      // check
-      // console.log(token);
-      // console.log(goalData);
-
       return await goalService.getGoals(token);
     } catch (error) {
       const message =
@@ -52,23 +41,18 @@ export const getGoals = createAsyncThunk(
           error.response.data &&
           error.response.data.message) ||
         error.message ||
-        error.toStringify();
-
+        error.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }
 );
 
+// Delete user goal
 export const deleteGoal = createAsyncThunk(
   "goals/delete",
   async (id, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-
-      // check
-      // console.log(token);
-      // console.log(goalData);
-
       return await goalService.deleteGoal(id, token);
     } catch (error) {
       const message =
@@ -76,8 +60,7 @@ export const deleteGoal = createAsyncThunk(
           error.response.data &&
           error.response.data.message) ||
         error.message ||
-        error.toStringify();
-
+        error.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -91,7 +74,6 @@ export const goalSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // create
       .addCase(createGoal.pending, (state) => {
         state.isLoading = true;
       })
@@ -105,8 +87,6 @@ export const goalSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-
-      // get
       .addCase(getGoals.pending, (state) => {
         state.isLoading = true;
       })
@@ -120,8 +100,6 @@ export const goalSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-
-      // delete
       .addCase(deleteGoal.pending, (state) => {
         state.isLoading = true;
       })
@@ -141,5 +119,4 @@ export const goalSlice = createSlice({
 });
 
 export const {reset} = goalSlice.actions;
-
 export default goalSlice.reducer;
